@@ -507,10 +507,15 @@
                                 <span><i class="fa-solid fa-cloud-sun mr-2 text-amber-400"></i>상해 실시간 일기예보</span>
                                 <span class="text-[10px] bg-slate-700 text-slate-300 px-2 py-1 rounded">실시간 연동</span>
                             </h3>
-                            <p class="text-sm text-slate-400 mb-4">현지 에어컨 및 유람선 탑승 시 체온 유지를 위해 <strong>가벼운 겉옷(바람막이)</strong>을 꼭 준비해 주세요.</p>
                             
-                            <div id="weather-container" class="flex overflow-x-auto gap-3 pb-2 no-scrollbar flex-1 items-center">
+                            <div id="weather-container" class="flex overflow-x-auto gap-3 pb-2 no-scrollbar flex-1 items-center mb-4">
                                 <div class="text-center w-full text-slate-500 text-sm"><i class="fa-solid fa-spinner fa-spin mr-2"></i>기상 정보를 불러오는 중입니다...</div>
+                            </div>
+                            
+                            <!-- 👕 동적 옷차림 추천 영역 -->
+                            <div id="clothing-recommendation" class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                                <h4 class="text-xs font-bold text-amber-400 mb-2"><i class="fa-solid fa-shirt mr-1"></i> 주간 날씨 기반 옷차림 추천</h4>
+                                <p class="text-sm text-slate-300 leading-relaxed">데이터를 분석 중입니다...</p>
                             </div>
                         </div>
 
@@ -527,6 +532,22 @@
                                 </div>
                                 <div id="exchange-rate-display" class="text-emerald-400 font-black text-2xl flex items-center gap-2">
                                     <i class="fa-solid fa-spinner fa-spin text-sm"></i>
+                                </div>
+                            </div>
+
+                            <!-- 🧮 간편 환율 계산기 -->
+                            <div class="bg-slate-800/80 p-4 rounded-xl border border-emerald-900/50 mb-5 shadow-inner">
+                                <h4 class="text-xs font-bold text-emerald-400 mb-3"><i class="fa-solid fa-calculator mr-1"></i> 간편 환율 계산 (실시간 연동)</h4>
+                                <div class="flex items-center gap-3">
+                                    <div class="relative flex-1">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">¥</span>
+                                        <input type="number" id="cny-input" oninput="convertCurrency()" placeholder="위안 입력" class="w-full bg-slate-900 border border-slate-600 rounded-lg py-3 pl-8 pr-3 text-white font-bold text-lg focus:outline-none focus:border-emerald-500 transition-colors" inputmode="numeric">
+                                    </div>
+                                    <div class="text-slate-500"><i class="fa-solid fa-arrow-right"></i></div>
+                                    <div class="relative flex-1">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-sm">₩</span>
+                                        <input type="text" id="krw-output" readonly placeholder="원화 계산" class="w-full bg-slate-900/50 border border-slate-700 rounded-lg py-3 pl-8 pr-3 text-emerald-400 font-bold text-lg focus:outline-none cursor-not-allowed text-right placeholder-slate-600">
+                                    </div>
                                 </div>
                             </div>
 
@@ -923,24 +944,41 @@
         // 실시간 날씨 & 환율 API 연동 로직
         // ==========================================
         
+        let currentRemittanceRate = 190; // 환율 기본값 세팅
+
         // 1. 실시간 송금기준환율 (약 1% 가산 적용)
         async function fetchExchangeRate() {
             try {
                 const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/cny.json');
                 const data = await response.json();
                 const baseRate = data.cny.krw; // 매매기준율
-                const remittanceRate = baseRate * 1.01; // 송금/카드결제 예상 환율 (약 +1%)
+                currentRemittanceRate = baseRate * 1.01; // 송금/카드결제 예상 환율 (약 +1%)
                 
-                document.getElementById('exchange-rate-display').innerHTML = `1위안 = ${remittanceRate.toFixed(2)}원`;
+                document.getElementById('exchange-rate-display').innerHTML = `1위안 = ${currentRemittanceRate.toFixed(2)}원`;
+                convertCurrency(); // API 로딩 후 입력값이 있으면 즉시 재계산
             } catch (error) {
                 console.error("환율 정보를 불러올 수 없습니다:", error);
                 document.getElementById('exchange-rate-display').innerHTML = `1위안 = 190원 (예상)`;
             }
         }
 
+        // 환율 계산기 동작 로직
+        function convertCurrency() {
+            const cnyInput = document.getElementById('cny-input').value;
+            const krwOutput = document.getElementById('krw-output');
+            
+            if(cnyInput && cnyInput > 0) {
+                const krw = Math.round(cnyInput * currentRemittanceRate);
+                krwOutput.value = krw.toLocaleString();
+            } else {
+                krwOutput.value = '';
+            }
+        }
+
         // 2. 실시간 주간 일기예보 (Open-Meteo API)
         async function fetchWeather() {
             const container = document.getElementById('weather-container');
+            const clothContainer = document.querySelector('#clothing-recommendation p');
             try {
                 // 상해 위도/경도 기반 주간 예보 데이터
                 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=31.2304&longitude=121.4737&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FShanghai');
@@ -960,6 +998,9 @@
                 };
 
                 let html = '';
+                let totalMax = 0;
+                let totalMin = 0;
+                
                 // 오늘부터 7일간 예보 출력
                 for(let i=0; i<7; i++) {
                     const dateStr = data.daily.time[i];
@@ -969,12 +1010,18 @@
                     
                     const code = data.daily.weathercode[i];
                     let wInfo = weatherCodes[code] || { icon: 'fa-cloud', color: 'text-slate-400', desc: '구름많음' };
+                    
+                    // 🚨 버그 픽스: 소나기(80~82)가 눈(71)으로 잡히던 로직 수정
                     if(code >= 51 && code <= 67) wInfo = weatherCodes[61];
-                    if(code >= 71 && code <= 82) wInfo = weatherCodes[71];
+                    if(code >= 80 && code <= 82) wInfo = weatherCodes[61]; // 소나기
+                    if((code >= 71 && code <= 77) || (code >= 85 && code <= 86)) wInfo = weatherCodes[71]; // 눈
                     if(code >= 95) wInfo = weatherCodes[95];
 
                     const maxT = Math.round(data.daily.temperature_2m_max[i]);
                     const minT = Math.round(data.daily.temperature_2m_min[i]);
+                    
+                    totalMax += maxT;
+                    totalMin += minT;
 
                     html += `
                         <div class="flex-shrink-0 w-24 bg-slate-800 rounded-xl p-3 border border-slate-700 flex flex-col items-center justify-center text-center">
@@ -986,9 +1033,28 @@
                     `;
                 }
                 container.innerHTML = html;
+
+                // 👕 동적 옷차림 추천 로직 (평균 기온 기반)
+                const avgMax = Math.round(totalMax / 7);
+                const avgMin = Math.round(totalMin / 7);
+                
+                let clothText = `이번 주 상해는 평균 <span class="text-sky-400">최저 ${avgMin}°C</span> ~ <span class="text-rose-400">최고 ${avgMax}°C</span>로 예측됩니다.<br><br>`;
+                
+                if(avgMax >= 28) {
+                    clothText += `한여름 날씨입니다. <strong>시원한 반팔과 반바지, 린넨 소재의 옷</strong>을 위주로 챙겨주세요. 실내 에어컨이 매우 강하므로 얇은 긴팔 겉옷(가디건)은 필수입니다. 햇빛이 강하니 선글라스와 양산도 챙겨주세요.`;
+                } else if(avgMax >= 23) {
+                    clothText += `따뜻한 초여름 날씨입니다. 낮에는 <strong>반팔이나 얇은 긴팔</strong>이 활동하기 가장 좋으며, 아침저녁이나 비가 올 때, 그리고 황포강 유람선 탑승 시 체온 유지를 위해 <strong>바람막이나 가디건</strong>을 반드시 챙겨주세요.`;
+                } else if(avgMax >= 15) {
+                    clothText += `선선한 봄/가을 날씨입니다. <strong>긴팔 티셔츠나 맨투맨, 얇은 니트</strong>에 <strong>가벼운 자켓이나 점퍼</strong>를 겹쳐 입는 것이 좋습니다. 일교차가 크니 입고 벗기 편한 옷차림을 권장합니다.`;
+                } else {
+                    clothText += `쌀쌀한 날씨입니다. <strong>따뜻한 니트, 경량 패딩, 도톰한 외투</strong>를 준비해 주시고, 필요에 따라 머플러나 장갑 등을 챙겨 야외 활동(상해옛거리 등) 시 보온에 신경 써 주시기 바랍니다.`;
+                }
+                clothContainer.innerHTML = clothText;
+
             } catch (error) {
                 console.error("날씨 정보를 불러올 수 없습니다:", error);
                 container.innerHTML = `<div class="text-center w-full text-slate-500 text-sm">일기예보 정보를 불러오지 못했습니다.</div>`;
+                clothContainer.innerHTML = `현재 날씨 정보를 불러올 수 없어 기본 가이드를 제공합니다. 출국 전 일기예보를 개별적으로 꼭 확인해 주시기 바랍니다.`;
             }
         }
 
