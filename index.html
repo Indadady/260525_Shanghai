@@ -17,8 +17,9 @@
     <!-- SEO & Open Graph -->
     <meta name="description" content="공무원 동기모임 상해 2박 3일 단독 투어 공식 가이드북">
     <meta property="og:title" content="🇨🇳 상해 2박 3일 동기모임 단독투어 안내서">
-    <meta property="og:description" content="동방의 파리 상해로 떠나는 뜻깊은 동기모임 여행 일정표 및 안내사항입니다.">
-    <meta property="og:image" content="https://tse3.mm.bing.net/th/id/OIP.pIX5Ea2tCRlL4ykHN7TK7QHaFP?w=474&h=474&c=7&p=0">
+    <meta property="og:description" content="동방의 파리 상해로 떠나는 뜻깊은 동기모임 여행 일정표 및 안내사항입니다. (무비자 입국 적용)">
+    <!-- 스마트 가이드북: 여행지의 고화질 풍경 썸네일 적용 -->
+    <meta property="og:image" content="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +35,7 @@
         
         /* 상해 야경 고화질 이미지로 배경 적용 */
         .hero-bg { 
-            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4)), url('https://tse1.mm.bing.net/th/id/OIP.ehcPBIKXVNVbo-diAIBoGQHaE4');
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4)), url('https://images.unsplash.com/photo-1468956398224-6ce658ce54f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover; 
             background-position: center; 
             background-attachment: fixed;
@@ -384,7 +385,7 @@
             </div>
         </section>
 
-        <!-- Accommodations (UPDATED) -->
+        <!-- Accommodations -->
         <section id="hotel" class="py-16 bg-white border-t border-slate-200">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-10">
@@ -563,7 +564,7 @@
                                     </div>
                                     <div class="text-right">
                                         <p class="text-sm font-bold text-rose-400">상해가 더 비싸요 🔺</p>
-                                        <p class="text-[11px] text-slate-400">한국 4,500원 < <span class="font-bold text-white">상해 약 5,700원</span></p>
+                                        <p class="text-[11px] text-slate-400">한국 4,500원 &lt; <span class="font-bold text-white">상해 약 5,700원</span></p>
                                     </div>
                                 </div>
 
@@ -577,7 +578,7 @@
                                     </div>
                                     <div class="text-right">
                                         <p class="text-sm font-bold text-blue-400">상해가 더 저렴해요 🔻</p>
-                                        <p class="text-[11px] text-slate-400">한국 4,800원 > <span class="font-bold text-white">상해 약 2,700원</span></p>
+                                        <p class="text-[11px] text-slate-400">한국 4,800원 &gt; <span class="font-bold text-white">상해 약 2,700원</span></p>
                                     </div>
                                 </div>
 
@@ -607,25 +608,42 @@
             </div>
         </section>
 
-        <!-- Checklist & Memo -->
+        <!-- 📝 Checklist & Memo (메모장 복구 및 업그레이드) -->
         <section id="check" class="py-16 bg-slate-50 border-t border-slate-200">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-10">
                     <span class="text-slate-600 font-black tracking-widest text-xs uppercase">PREPARATION</span>
-                    <h2 class="text-3xl font-bold text-slate-800 mt-2">필수 준비물 체크리스트</h2>
-                    <p class="text-sm text-slate-500 mt-2">출국 전 스마트폰을 보며 체크해 주세요! (체크 내역은 자동 저장됩니다)</p>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">필수 준비물 & 메모</h2>
+                    <p class="text-sm text-slate-500 mt-2">출국 전 꼼꼼히 체크하시고 필요한 내용을 메모해 보세요. (현재 상해 30일 무비자 입국 가능)</p>
                 </div>
                 
-                <div class="max-w-3xl mx-auto">
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <!-- 기존 1단 레이아웃을 2단(좌: 체크리스트, 우: 메모장)으로 확장 -->
+                <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- Checklist 영역 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm h-full">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="font-bold text-lg text-slate-800"><i class="fa-solid fa-check-double mr-2 text-amber-600"></i>짐 싸기 확인</h3>
                             <button onclick="resetChecklist()" class="text-xs text-slate-500 underline hover:text-red-500 transition-colors bg-slate-50 px-2 py-1 rounded border border-slate-200 shadow-sm">[초기화]</button>
                         </div>
-                        <div id="checklist-container" class="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                        <div id="checklist-container" class="space-y-2 flex flex-col">
                             <!-- JS Generated -->
                         </div>
                     </div>
+
+                    <!-- Memo 영역 (신규 복구) -->
+                    <div class="bg-amber-50 p-6 rounded-2xl border border-amber-200 shadow-sm flex flex-col h-full relative">
+                        <div class="flex justify-between items-center mb-4 z-10">
+                            <h3 class="font-bold text-lg text-amber-900"><i class="fa-solid fa-pen-to-square mr-2"></i>개인 메모장</h3>
+                            <span id="memo-status" class="text-xs text-amber-600 font-bold transition-opacity duration-300 opacity-0 bg-amber-100 px-2 py-1 rounded shadow-sm">자동 저장됨</span>
+                        </div>
+                        <div class="relative flex-1 z-10">
+                            <textarea id="personal-memo" class="w-full h-full min-h-[220px] bg-transparent border-none resize-none focus:ring-0 text-amber-900 placeholder-amber-700/50 leading-loose p-0 m-0 text-[15px] outline-none" placeholder="공항 미팅 시간이나 개인적으로 사야 할 면세점 쇼핑 리스트 등을 자유롭게 메모해 보세요. 작성 시 자동 저장됩니다."></textarea>
+                        </div>
+                        <!-- 노란색 줄무늬 메모장 배경 효과 -->
+                        <div class="absolute top-[4.5rem] bottom-6 left-6 right-6 pointer-events-none border-t border-amber-200" style="background-image: repeating-linear-gradient(transparent, transparent 31px, #fde68a 31px, #fde68a 32px);"></div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -663,9 +681,9 @@
                 <p class="mt-1">인 원 : 9명 단독 (33인승 일반차량)</p>
                 <p class="mt-1 text-red-600">항 공 : 아시아나항공 (인천국제공항 제2여객터미널 T2 출도착)</p>
                 <p class="mt-1">호 텔 : 상해 진장 메트로폴로 클래식(YMCA) 또는 동급 (도심형 4성) (4트윈+1싱글)</p>
-                <p class="mt-1">조 건 : 전 일정 쇼핑 1회 + 노옵션 조건</p>
+                <p class="mt-1 text-blue-600">조 건 : 전 일정 쇼핑 1회 + 노옵션 (※중국 30일 무비자 입국 적용)</p>
                 <p class="mt-1 text-slate-600 font-normal">* 포함사항: 항공, TAX, 호텔, 차량, 식사, 입장료, 현지가이드, 기사/가이드팁, 여행자보험</p>
-                <p class="mt-1 text-slate-600 font-normal">* 불포함사항: 싱글차지비용, 기타 개인소모비 (매너팁 등)</p>
+                <p class="mt-1 text-slate-600 font-normal">* 불포함사항: 기타 개인소모비 (매너팁 등)</p>
             </div>
             <div class="text-right text-slate-800">
                 <p>행사 주관: 투어메이커</p>
@@ -781,11 +799,12 @@
             }
         }
 
-        // Checklist Logic (상해 맞춤)
-        const CHECK_KEY = 'shanghai_vip_checklist_v1'; 
+        // =======================================================
+        // ✔️ Checklist & Memo Logic (안전한 스토리지 구조 적용)
+        // =======================================================
         const CHECK_ITEMS = [
             '여권 (출발일 기준 만료일 6개월 이상 필수)',
-            '중국 비자 (단체비자/개인비자 별도 안내 확인)',
+            '비자 불필요 (현재 중국 30일 무비자 입국 가능 적용) 🇨🇳',
             '알리페이(Alipay) 앱 설치 및 신용카드 등록 필수',
             'VPN 앱 사전 설치 (카톡/유튜브 접속용)',
             '휴대용 우산 및 가벼운 겉옷(바람막이 등)',
@@ -794,13 +813,35 @@
             '스마트폰 보조배터리'
         ];
 
+        const STORAGE_KEY_CHK = 'shanghai_checklist_v2';
+        const STORAGE_KEY_MEMO = 'shanghai_memo_v2';
+        
+        // 아이프레임(보안망) 환경에서도 에러 없이 작동하도록 try-catch로 감싼 안전 스토리지 객체
+        const safeStorage = {
+            get: (key) => {
+                try { return localStorage.getItem(key); }
+                catch(e) { return window['inMem_' + key]; }
+            },
+            set: (key, val) => {
+                try { localStorage.setItem(key, val); }
+                catch(e) { window['inMem_' + key] = val; }
+            },
+            remove: (key) => {
+                try { localStorage.removeItem(key); }
+                catch(e) { delete window['inMem_' + key]; }
+            }
+        };
+
+        // 1. 체크리스트 로직
         function renderChecklist(){
             const container = document.getElementById('checklist-container');
             if(!container) return;
-            const saved = JSON.parse(localStorage.getItem(CHECK_KEY) || '{}');
+            
+            const savedData = JSON.parse(safeStorage.get(STORAGE_KEY_CHK) || '{}');
+            
             container.innerHTML = CHECK_ITEMS.map((label, idx) => {
                 const id = `chk_${idx}`;
-                const checked = saved[id] ? 'checked' : '';
+                const checked = savedData[id] ? 'checked' : '';
                 return `
                     <label class="flex items-center gap-3 bg-white border border-slate-100 rounded-xl px-4 py-3 cursor-pointer hover:bg-slate-50 transition shadow-sm mb-2">
                         <input type="checkbox" id="${id}" ${checked} class="h-5 w-5 text-slate-800 rounded focus:ring-slate-800 border-slate-300">
@@ -811,30 +852,52 @@
 
             container.querySelectorAll('input[type=checkbox]').forEach(cb => {
                 cb.addEventListener('change', () => {
-                    const currentSaved = JSON.parse(localStorage.getItem(CHECK_KEY) || '{}');
+                    const currentSaved = JSON.parse(safeStorage.get(STORAGE_KEY_CHK) || '{}');
                     currentSaved[cb.id] = cb.checked;
-                    localStorage.setItem(CHECK_KEY, JSON.stringify(currentSaved));
+                    safeStorage.set(STORAGE_KEY_CHK, JSON.stringify(currentSaved));
                 });
             });
         }
         
         function resetChecklist(){
             if(confirm('체크리스트를 초기화하시겠습니까?')){
-                localStorage.removeItem(CHECK_KEY);
+                safeStorage.remove(STORAGE_KEY_CHK);
                 renderChecklist();
             }
         }
-        renderChecklist();
+
+        // 2. 메모장 로직 (자동 저장)
+        function initMemo() {
+            const memoEl = document.getElementById('personal-memo');
+            const statusEl = document.getElementById('memo-status');
+            if(!memoEl) return;
+
+            // 저장된 메모 불러오기
+            const savedMemo = safeStorage.get(STORAGE_KEY_MEMO);
+            if(savedMemo) memoEl.value = savedMemo;
+
+            let timeoutId;
+            memoEl.addEventListener('input', () => {
+                // 입력할 때마다 자동 저장
+                safeStorage.set(STORAGE_KEY_MEMO, memoEl.value);
+                
+                // '저장됨' 상태 표시 로직
+                statusEl.classList.remove('opacity-0');
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    statusEl.classList.add('opacity-0');
+                }, 1500);
+            });
+        }
 
         // Map Route Logic (Shanghai - 도심형 호텔 업데이트)
         let map;
         let mapLayers = [];
 
-        // 호텔이 디즈니 인근(외곽)에서 대세계역/인민광장 인근(도심)으로 변경됨에 따라 좌표 업데이트
         const spots = {
             icn: { coords: [37.4602, 126.4407], title: "인천국제공항", color: "#64748b", icon: "✈️" },
             pvg: { coords: [31.1443, 121.8083], title: "상해 푸동공항", color: "#64748b", icon: "🛬", isSub: true },
-            hotel: { coords: [31.2280, 121.4780], title: "진장 메트로폴로 클래식(도심)", color: "#1e293b", icon: "🏨" }, // 📍 좌표 업데이트 완료
+            hotel: { coords: [31.2280, 121.4780], title: "진장 메트로폴로 클래식(도심)", color: "#1e293b", icon: "🏨" },
             gov: { coords: [31.2185, 121.4746], title: "임시정부청사", color: "#b45309", icon: "🏛️", isSub: true },
             xintiandi: { coords: [31.2222, 121.4764], title: "신천지", color: "#475569", icon: "☕", isSub: true },
             cruise: { coords: [31.2366, 121.4912], title: "황포강 유람선", color: "#0284c7", icon: "⛴️", isSub: true },
@@ -1057,10 +1120,12 @@
             }
         }
 
-        // 페이지 진입 시 실시간 데이터 로드
+        // 페이지 진입 시 스크립트 일괄 로드 및 초기화
         document.addEventListener("DOMContentLoaded", () => {
             fetchExchangeRate();
             fetchWeather();
+            renderChecklist();
+            initMemo();
         });
 
         // D-Day Logic
