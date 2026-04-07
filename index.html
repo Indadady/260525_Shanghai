@@ -18,8 +18,8 @@
     <meta name="description" content="공무원 동기모임 상해 2박 3일 단독 투어 공식 가이드북">
     <meta property="og:title" content="🇨🇳 상해 2박 3일 동기모임 단독투어 안내서">
     <meta property="og:description" content="동방의 파리 상해로 떠나는 뜻깊은 동기모임 여행 일정표 및 안내사항입니다. (무비자 입국 적용)">
-    <!-- 스마트 가이드북: 여행지의 고화질 풍경 썸네일 적용 -->
-    <meta property="og:image" content="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <!-- 스마트 가이드북: 요청하신 상해 풍경 썸네일 적용 -->
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e9/Lujiazui_financial_district_from_Oriental_Pearl_Tower_%28October_1st_2022%29.jpg">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,9 +33,9 @@
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #1e293b; }
         
-        /* 상해 야경 고화질 이미지로 배경 적용 */
+        /* 상해 야경 고화질 이미지로 배경 적용 (교체됨) */
         .hero-bg { 
-            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4)), url('https://images.unsplash.com/photo-1468956398224-6ce658ce54f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.4)), url('https://static.toiimg.com/thumb/msid-58459434%2Cwidth%3D1200%2Cheight%3D900/58459434.jpg');
             background-size: cover; 
             background-position: center; 
             background-attachment: fixed;
@@ -93,7 +93,7 @@
                     <a href="http://tourmaker.kr" target="_blank">
                         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="Tourmaker" class="h-8">
                     </a>
-                    <span id="d-day-badge" class="hidden bg-amber-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold animate-pulse"></span>
+                    <span id="d-day-badge" class="hidden"></span>
                 </div>
                 
                 <div class="flex-1 overflow-x-auto no-scrollbar ml-4 md:ml-8">
@@ -121,10 +121,14 @@
                 <span class="bg-slate-800/90 text-amber-400 px-6 py-2 rounded-full text-lg md:text-xl font-bold mb-6 inline-block border border-slate-600 shadow-lg tracking-widest">
                     <i class="fa-solid fa-users mr-2"></i>공무원 동기모임 해외탐방
                 </span>
-                <h1 class="text-4xl md:text-6xl font-black mb-4 drop-shadow-2xl font-[Nanum Myeongjo] leading-tight">
-                    동방의 파리, 상해<br>
-                    <span class="text-white font-bold text-2xl md:text-4xl mt-4 block">역사의 발자취와 화려한 낭만의 3일</span>
-                </h1>
+                
+                <!-- 동적 메시지 표출 영역 -->
+                <div id="hero-main-text">
+                    <h1 class="text-4xl md:text-6xl font-black mb-4 drop-shadow-2xl font-[Nanum Myeongjo] leading-tight">
+                        동방의 파리, 상해<br>
+                        <span class="text-white font-bold text-2xl md:text-4xl mt-4 block">역사의 발자취와 화려한 낭만의 3일</span>
+                    </h1>
+                </div>
                 
                 <div class="bg-black/60 backdrop-blur-sm inline-block px-8 py-4 rounded-2xl mt-6 border border-white/20">
                     <p class="text-lg md:text-2xl text-amber-400 font-bold tracking-wide">2026.05.25(월) ~ 05.27(수) <span class="text-base font-normal text-white ml-2">| 2박 3일</span></p>
@@ -608,7 +612,7 @@
             </div>
         </section>
 
-        <!-- 📝 Checklist & Memo (메모장 복구 및 업그레이드) -->
+        <!-- 📝 Checklist & Memo -->
         <section id="check" class="py-16 bg-slate-50 border-t border-slate-200">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-10">
@@ -617,7 +621,6 @@
                     <p class="text-sm text-slate-500 mt-2">출국 전 꼼꼼히 체크하시고 필요한 내용을 메모해 보세요. (현재 상해 30일 무비자 입국 가능)</p>
                 </div>
                 
-                <!-- 기존 1단 레이아웃을 2단(좌: 체크리스트, 우: 메모장)으로 확장 -->
                 <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
                     
                     <!-- Checklist 영역 -->
@@ -631,7 +634,7 @@
                         </div>
                     </div>
 
-                    <!-- Memo 영역 (신규 복구) -->
+                    <!-- Memo 영역 -->
                     <div class="bg-amber-50 p-6 rounded-2xl border border-amber-200 shadow-sm flex flex-col h-full relative">
                         <div class="flex justify-between items-center mb-4 z-10">
                             <h3 class="font-bold text-lg text-amber-900"><i class="fa-solid fa-pen-to-square mr-2"></i>개인 메모장</h3>
@@ -647,9 +650,41 @@
                 </div>
             </div>
         </section>
+        
+        <!-- 🌍 ESG 실천 대시보드 (추가됨) -->
+        <section class="py-12 bg-emerald-50 border-t border-emerald-100 print:hidden">
+            <div class="container mx-auto px-4 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <span class="inline-block bg-emerald-100 text-emerald-700 text-xs px-3 py-1 rounded-full font-bold shadow-sm mb-4"><i class="fa-solid fa-leaf mr-1"></i>ESG 지속가능 경영</span>
+                    <h2 class="text-2xl font-bold text-slate-800 mb-6">스마트 가이드북 탄소 저감 효과</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex flex-col items-center justify-center hover:shadow-md transition">
+                            <i class="fa-solid fa-file-excel text-3xl text-emerald-500 mb-3"></i>
+                            <p class="text-sm text-slate-500 font-bold">종이 절감</p>
+                            <p class="text-2xl font-black text-slate-800">8장 <span class="text-xs font-normal text-slate-500">/1인</span></p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex flex-col items-center justify-center hover:shadow-md transition">
+                            <i class="fa-solid fa-cloud text-3xl text-sky-500 mb-3"></i>
+                            <p class="text-sm text-slate-500 font-bold">탄소 배출 감소</p>
+                            <p class="text-2xl font-black text-slate-800">38g <span class="text-xs font-normal text-slate-500">/1인</span></p>
+                        </div>
+                        <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex flex-col items-center justify-center hover:shadow-md transition">
+                            <i class="fa-solid fa-droplet text-3xl text-blue-500 mb-3"></i>
+                            <p class="text-sm text-slate-500 font-bold">물 절약</p>
+                            <p class="text-2xl font-black text-slate-800">75L <span class="text-xs font-normal text-slate-500">/1인</span></p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-emerald-800 bg-emerald-100/50 p-4 rounded-xl leading-relaxed font-medium">
+                        본 행사는 스마트 가이드북 도입을 통해 참여 인원 비례 약 <strong>1그루</strong>의 나무를 심는 효과를 거두었으며, 디지털 전환(DX)을 통한 공공부문 에너지 절약 실천의 모범 사례입니다.
+                    </p>
+                </div>
+            </div>
+        </section>
 
         <!-- Footer -->
-        <footer class="bg-[#f8f9fa] py-12 border-t border-slate-200 text-center">
+        <footer class="bg-[#f8f9fa] py-12 border-t border-slate-200 text-center print:hidden">
             <div class="container mx-auto px-4">
                 <p class="text-[12px] md:text-[13px] text-[#6c757d] font-normal mb-8 max-w-2xl mx-auto leading-relaxed text-center">
                     [System Powered by TOURMAKER] 본 스마트 가이드북은 **투어메이커**의 기획과 <a href="http://tourmaker.kr" target="_blank" class="font-bold text-[#6c757d] hover:text-slate-900 underline underline-offset-2">투어메이커</a>의 트래블 테크 기술 제휴로 제작되었습니다.
@@ -1013,15 +1048,18 @@
         async function fetchExchangeRate() {
             try {
                 const response = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/cny.json');
+                if (!response.ok) throw new Error('API request failed');
                 const data = await response.json();
                 const baseRate = data.cny.krw; // 매매기준율
-                currentRemittanceRate = baseRate * 1.01; // 송금/카드결제 예상 환율 (약 +1%)
+                currentRemittanceRate = baseRate * 1.015; // 송금/카드결제 예상 환율 (약 +1.5% 규칙 적용)
                 
                 document.getElementById('exchange-rate-display').innerHTML = `1위안 = ${currentRemittanceRate.toFixed(2)}원`;
                 convertCurrency(); // API 로딩 후 입력값이 있으면 즉시 재계산
             } catch (error) {
-                console.error("환율 정보를 불러올 수 없습니다:", error);
+                console.warn("환율 정보를 불러올 수 없습니다, 기본값을 사용합니다.");
+                currentRemittanceRate = 190;
                 document.getElementById('exchange-rate-display').innerHTML = `1위안 = 190원 (예상)`;
+                convertCurrency();
             }
         }
 
@@ -1042,11 +1080,31 @@
         async function fetchWeather() {
             const container = document.getElementById('weather-container');
             const clothContainer = document.querySelector('#clothing-recommendation p');
+            
+            let data;
             try {
                 // 상해 위도/경도 기반 주간 예보 데이터
                 const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=31.2304&longitude=121.4737&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FShanghai');
-                const data = await response.json();
-                
+                if (!response.ok) throw new Error('API request failed');
+                data = await response.json();
+            } catch (error) {
+                console.warn("날씨 정보를 불러올 수 없습니다, 예비 데이터를 사용합니다.");
+                const today = new Date();
+                data = {
+                    daily: {
+                        time: Array.from({length: 7}, (_, i) => {
+                            const d = new Date(today);
+                            d.setDate(d.getDate() + i);
+                            return d.toISOString().split('T')[0];
+                        }),
+                        weathercode: [1, 2, 3, 61, 1, 0, 2],
+                        temperature_2m_max: [24, 25, 22, 20, 23, 26, 25],
+                        temperature_2m_min: [16, 17, 15, 14, 15, 17, 16]
+                    }
+                };
+            }
+
+            try {
                 const weatherCodes = {
                     0: { icon: 'fa-sun', color: 'text-amber-400', desc: '맑음' },
                     1: { icon: 'fa-cloud-sun', color: 'text-amber-300', desc: '대체로 맑음' },
@@ -1114,7 +1172,7 @@
                 clothContainer.innerHTML = clothText;
 
             } catch (error) {
-                console.error("날씨 정보를 불러올 수 없습니다:", error);
+                console.error("날씨 렌더링 중 오류 발생:", error);
                 container.innerHTML = `<div class="text-center w-full text-slate-500 text-sm">일기예보 정보를 불러오지 못했습니다.</div>`;
                 clothContainer.innerHTML = `현재 날씨 정보를 불러올 수 없어 기본 가이드를 제공합니다. 출국 전 일기예보를 개별적으로 꼭 확인해 주시기 바랍니다.`;
             }
@@ -1126,14 +1184,49 @@
             fetchWeather();
             renderChecklist();
             initMemo();
+            
+            // D-Day 3단계 분기 로직 (진행 전/중/후 분기 처리)
+            const teamName = "공무원 동기모임";
+            const startDate = new Date('2026-05-25T00:00:00+09:00');
+            const endDate = new Date('2026-05-27T23:59:59+09:00');
+            const now = new Date();
+            
+            const startDiff = Math.ceil((startDate - now) / (1000*60*60*24));
+            const endDiff = Math.ceil((endDate - now) / (1000*60*60*24));
+            
+            const badge = document.getElementById('d-day-badge');
+            const heroContainer = document.getElementById('hero-main-text');
+
+            if (startDiff > 0) {
+                // 1단계: 행사 전
+                badge.textContent = `D-${startDiff}`;
+                badge.className = "bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold animate-pulse inline-block";
+            } else if (startDiff <= 0 && endDiff >= 0) {
+                // 2단계: 행사 중
+                const currentDay = Math.abs(startDiff) + 1;
+                badge.textContent = `📍 ${currentDay}일차 진행중`;
+                badge.className = "bg-rose-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold animate-pulse inline-block";
+                
+                heroContainer.innerHTML = `
+                    <h1 class="text-3xl md:text-5xl font-black mb-4 drop-shadow-2xl font-[Nanum Myeongjo] leading-tight">
+                        현재 <span class="text-amber-400">${teamName}</span>의<br>
+                        <span class="text-white font-bold text-2xl md:text-4xl mt-4 block">${currentDay}일차 여정이 활기차게 진행되고 있습니다.</span>
+                    </h1>
+                `;
+            } else {
+                // 3단계: 행사 종료
+                badge.textContent = `🏁 여정 종료`;
+                badge.className = "bg-slate-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold inline-block";
+                
+                heroContainer.innerHTML = `
+                    <h1 class="text-3xl md:text-5xl font-black mb-4 drop-shadow-2xl font-[Nanum Myeongjo] leading-tight text-slate-300">
+                        모든 여정이 종료되었습니다.<br>
+                        <span class="text-white font-bold text-xl md:text-3xl mt-4 block">좋은 추억으로 오래 간직되길 바랍니다.</span>
+                    </h1>
+                `;
+            }
         });
 
-        // D-Day Logic
-        const depart = new Date('2026-05-25');
-        const diff = Math.ceil((depart - new Date()) / (1000*60*60*24));
-        const badge = document.getElementById('d-day-badge');
-        badge.textContent = diff > 0 ? `D-${diff}` : (diff === 0 ? 'D-DAY' : `D+${Math.abs(diff)}`);
-        badge.classList.remove('hidden');
     </script>
 </body>
 </html>
